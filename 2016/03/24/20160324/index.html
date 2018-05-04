@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      ES6解构赋值 | YANDAN66 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="ES6解构赋值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6解构赋值 | YANDAN66">
+<meta property="og:url" content="https://yandan66.github.io/2016/03/24/20160324/index.html">
+<meta property="og:site_name" content="YANDAN66">
+<meta property="og:description" content="ES6解构赋值">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-04T08:42:47.769Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6解构赋值 | YANDAN66">
+<meta name="twitter:description" content="ES6解构赋值">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="../../../../css/uno.css">
+    <link rel="stylesheet" href="../../../../css/highlight.css">
+    <link rel="stylesheet" href="../../../../css/archive.css">
+    <link rel="stylesheet" href="../../../../css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">YANDAN66</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/" title="" class="">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">ES6解构赋值</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-03-24" class="post-meta__date date">2016-03-24</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>ES6解构赋值<br><a id="more"></a></p>
+<h3 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h3><p><strong>解构赋值</strong>语法是一个<code>Javascript</code>表达式，这使得可以将数据从数组或对象提取到不同的变量中。</p>
+<h4 id="数组的解构"><a href="#数组的解构" class="headerlink" title="数组的解构"></a>数组的解构</h4><h5 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h5><ul>
+<li>左边的变量按右边设置项的顺序赋值；</li>
+<li>空数组时，右边变量为<code>undefined</code>;</li>
+<li>不可遍历（不具备<code>Ietarator</code>接口）时报错。</li>
+</ul>
+<h5 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h5><ul>
+<li>设置默认值后，会采用<code>===</code>严格判断左边对应于右边的变量是否为<code>undefined</code>，若成功则默认值生效；</li>
+<li>默认值是一个函数或表达式时，是<strong>惰性</strong>计算的；</li>
+<li>默认值可以是解构值的其他变量，但是该变量必须在使用时已经声明。</li>
+</ul>
+<h4 id="对象的解构"><a href="#对象的解构" class="headerlink" title="对象的解构"></a>对象的解构</h4><h4 id="基本用法-1"><a href="#基本用法-1" class="headerlink" title="基本用法"></a>基本用法</h4><ul>
+<li>左边的变量按右边相对应的名称赋值，如找不到相对应的名称，这解构失败；</li>
+<li>如想左边声明的变量和右边属性名不对应, 则必须采用<code>let { foo: faz} = {&#39;foo&#39;: 123}//faz= 123</code>形式，但是此时<code>foo</code>不会赋值，这种情况在对象的嵌套结构中特别易出错；</li>
+<li>可以设置默认值，设置方法和数组解构相同。</li>
+<li>注意 <code>var x; {x}= {&#39;x&#39;: 2}</code>这种写法会报错， 因为<code>JavaScript</code>引擎认为<code>{}</code>开头的是代码块，不是语句。正确写法是添加一对括号：<code>var x; ({x} = {&#39;x&#39;: 2})</code>。</li>
+</ul>
+<h4 id="其他数据结构的解构"><a href="#其他数据结构的解构" class="headerlink" title="其他数据结构的解构"></a>其他数据结构的解构</h4><p> 解构的规则是只要左边的值不是数组或对象，就先将其转换为类数组或对象（主要根据其原生实现的<code>Ieterator</code>接口），然后再进行解构。比如类数组的字符串：<code>let {length: len} = &#39;hello&#39;;//len = 5</code>。</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><ul>
+<li>函数参数的解构和默认值<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//参数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">[x, y]</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//参数默认值</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params">&#123;x=<span class="number">0</span>, y=<span class="number">0</span>&#125;</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意下面函数的写法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params">&#123;x, y&#125; = &#123;x: <span class="number">0</span>, y = <span class="number">0</span>&#125;</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">move(&#123;<span class="attr">x</span>: <span class="number">3</span>, <span class="attr">y</span>: <span class="number">4</span>&#125;) <span class="comment">//[3, 4];</span></span><br><span class="line">move(&#123;<span class="attr">x</span>: <span class="number">3</span>&#125;)<span class="comment">//[3, undefined];</span></span><br><span class="line">move(&#123;&#125;) <span class="comment">//[undefined, undefined]</span></span><br><span class="line">move() <span class="comment">//[0, 0]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//上面的代码是为`move`函数参数指定默认值， 而不是为`x`和`y`指定默认值。</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2015-2017 by yandan66</span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d6d1da6e92ac017c8c09675b64546380";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261595465'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1261595465%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

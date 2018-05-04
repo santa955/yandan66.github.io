@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      JavaSript中this使用总结 | YANDAN66 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="JavaScript 中的 this 总是指向一个对象，而具体指向那个对象是在运行时基于函数的执行环境动态绑定的，而非函数声明时的环境,随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。">
+<meta name="keywords" content="this,apply,call,bind">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaSript中this使用总结 | YANDAN66">
+<meta property="og:url" content="https://yandan66.github.io/2015/04/17/20150417/index.html">
+<meta property="og:site_name" content="YANDAN66">
+<meta property="og:description" content="JavaScript 中的 this 总是指向一个对象，而具体指向那个对象是在运行时基于函数的执行环境动态绑定的，而非函数声明时的环境,随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-04T08:42:47.725Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaSript中this使用总结 | YANDAN66">
+<meta name="twitter:description" content="JavaScript 中的 this 总是指向一个对象，而具体指向那个对象是在运行时基于函数的执行环境动态绑定的，而非函数声明时的环境,随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="../../../../css/uno.css">
+    <link rel="stylesheet" href="../../../../css/highlight.css">
+    <link rel="stylesheet" href="../../../../css/archive.css">
+    <link rel="stylesheet" href="../../../../css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">YANDAN66</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/" title="" class="">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">JavaSript中this使用总结</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2015-04-17" class="post-meta__date date">2015-04-17</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="../../../../tags/apply/">apply</a>, <a class="tags-link" href="../../../../tags/bind/">bind</a>, <a class="tags-link" href="../../../../tags/call/">call</a>, <a class="tags-link" href="../../../../tags/this/">this</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p><code>JavaScript</code> 中的 <code>this</code> 总是指向一个对象，而具体指向那个对象是在运行时基于函数的执行环境动态绑定的，而非函数声明时的环境,随着函数使用场合的不同，<code>this</code>的值会发生变化。但是有一个总的原则，那就是<code>this</code>指的是，调用函数的那个对象。</p>
+<a id="more"></a>
+<h2 id="this的用法"><a href="#this的用法" class="headerlink" title="this的用法"></a><code>this</code>的用法</h2><p>实际应用中<code>this</code>的指向大致可以分为以下 4 中：</p>
+<ul>
+<li><p>在对象的方法中调用</p>
+</li>
+<li><p>在普通函数调用</p>
+</li>
+<li><p>在构造器调用</p>
+</li>
+<li><p>在 <code>Function.prototype.call</code> 或 <code>Function.prototype.apply</code>中调用。</p>
+</li>
+</ul>
+<h3 id="1-this-在对象的方法中调用时，-this指向的就是当前对象本身"><a href="#1-this-在对象的方法中调用时，-this指向的就是当前对象本身" class="headerlink" title="1.  this 在对象的方法中调用时， this指向的就是当前对象本身"></a>1.  <code>this</code> 在对象的方法中调用时， <code>this</code>指向的就是当前对象本身</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> object = &#123;</span><br><span class="line">	name: <span class="string">'Gates.Bill'</span>,</span><br><span class="line">	getName:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span> == object)  <span class="comment">//true</span></span><br><span class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)       <span class="comment">//"Gate.Bill" </span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">object.getName();					<span class="comment">//true,	//"Gates.Bill"</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-this在普通函数中调用时，this指向的是全局对象window"><a href="#2-this在普通函数中调用时，this指向的是全局对象window" class="headerlink" title="2. this在普通函数中调用时，this指向的是全局对象window"></a>2. <code>this</code>在普通函数中调用时，<code>this</code>指向的是全局对象<code>window</code></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>);						<span class="comment">//"windows"</span></span><br><span class="line">windows.name = <span class="string">"WINDOWS"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> fun = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)             <span class="comment">//"WINDOWS"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">fun();								   <span class="comment">//"WINDOWS"</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-this在构造器中调用"><a href="#3-this在构造器中调用" class="headerlink" title="3.  this在构造器中调用"></a>3.  <code>this</code>在构造器中调用</h3><p>构造器调用, 当用 <code>new</code> 运算符调用函数时，该函数总是会返回一个对象，通常情况下，构造函数里的 <code>this</code> 就指向返回的这个对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MyClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">this</span>.name = <span class="string">"class"</span>;    </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> MyClass();</span><br><span class="line"><span class="built_in">console</span>.log( obj.name ); <span class="comment">// class</span></span><br></pre></td></tr></table></figure>
+<p>如果使用 <code>new</code> 调用构造器时，构造器显式地返回了一个 <code>object</code> 类型的对象，那么此次运算结果最终会返回这个对象，而不是我们之前期待的 <code>this</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MyClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.name = <span class="string">"class"</span>;</span><br><span class="line">	<span class="keyword">return</span>&#123;</span><br><span class="line">		name : <span class="string">"other"</span></span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> MyClass();</span><br><span class="line"><span class="built_in">console</span>.log( obj.name ); 	<span class="comment">//other</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-在call-或者apply-中调用"><a href="#4-在call-或者apply-中调用" class="headerlink" title="4. 在call()或者apply()中调用"></a>4. 在<code>call()</code>或者<code>apply()</code>中调用</h3><p><code>apply()</code>和<code>call()</code>是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，<code>this</code>指的就是这第一个参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　alert(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o=&#123;&#125;;</span><br><span class="line">o.x = <span class="number">1</span>;</span><br><span class="line">o.m = test;</span><br><span class="line">o.m.apply(); <span class="comment">//0</span></span><br></pre></td></tr></table></figure>
+<p><code>apply()</code>的参数为空时，默认调用全局对象<code>windows</code>。因此，这时的运行结果为0，证明<code>this</code>指的是全局对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　alert(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o=&#123;&#125;;</span><br><span class="line">o.x = <span class="number">1</span>;</span><br><span class="line">o.m = test;</span><br><span class="line">o.m.apply(o); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<p><code>apply()</code>的参数为<code>o</code>时,调用的对象是<code>o</code>  因此，这时的运行结果为1，证明<code>this</code>指的是对象<code>o</code>。</p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2015-2017 by yandan66</span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d6d1da6e92ac017c8c09675b64546380";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261595465'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1261595465%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

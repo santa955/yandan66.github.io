@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      React Native填坑指南 | YANDAN66 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="最近准备搞搞React Native, 跑个Hello World就遇到各种各样的坑。在google上找了半天，虽然有答案，但是答案中有各种坑。本文主要开发环境是Windows 10 x64专业版。">
+<meta name="keywords" content="JavaScript,React Native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native填坑指南 | YANDAN66">
+<meta property="og:url" content="https://yandan66.github.io/2017/01/23/20170123/index.html">
+<meta property="og:site_name" content="YANDAN66">
+<meta property="og:description" content="最近准备搞搞React Native, 跑个Hello World就遇到各种各样的坑。在google上找了半天，虽然有答案，但是答案中有各种坑。本文主要开发环境是Windows 10 x64专业版。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/reactive-nativingitup.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_0.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/sdk.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_01_solution.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_02.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_02_solution_01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_02_solution_02.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_03.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_04.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_04_solution.png">
+<meta property="og:updated_time" content="2018-05-04T09:18:58.907Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React Native填坑指南 | YANDAN66">
+<meta name="twitter:description" content="最近准备搞搞React Native, 跑个Hello World就遇到各种各样的坑。在google上找了半天，虽然有答案，但是答案中有各种坑。本文主要开发环境是Windows 10 x64专业版。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/reactive-nativingitup.png">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="../../../../css/uno.css">
+    <link rel="stylesheet" href="../../../../css/highlight.css">
+    <link rel="stylesheet" href="../../../../css/archive.css">
+    <link rel="stylesheet" href="../../../../css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">YANDAN66</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/" title="" class="">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">React Native填坑指南</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-01-23" class="post-meta__date date">2017-01-23</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="../../../../tags/JavaScript/">JavaScript</a>, <a class="tags-link" href="../../../../tags/React-Native/">React Native</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>最近准备搞搞React Native, 跑个<code>Hello World</code>就遇到各种各样的坑。在<code>google</code>上找了半天，虽然有答案，但是答案中有各种坑。本文主要开发环境是<code>Windows 10 x64</code>专业版。<br><a id="more"></a><br><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/reactive-nativingitup.png" alt="banner"></p>
+<h3 id="1-react-native-init-testProject-always-fails-with-unexpected-token"><a href="#1-react-native-init-testProject-always-fails-with-unexpected-token" class="headerlink" title="1. react-native init testProject always fails with unexpected token."></a>1. react-native init testProject always fails with unexpected token.</h3><p><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_0.png" alt="banner"><br>解决方案: 升级<code>node.js</code>到最新版本<br>见这个答案：<a href="https://github.com/facebook/react-native/issues/15040" target="_blank" rel="noopener">#15040</a><br><br></p>
+<h3 id="2-react-native-run-android相关"><a href="#2-react-native-run-android相关" class="headerlink" title="2. react-native run-android相关"></a>2. <code>react-native run-android</code>相关</h3><h4 id="Can’t-find-SDK-despite-setting-ANDROID-HOME-windows-10"><a href="#Can’t-find-SDK-despite-setting-ANDROID-HOME-windows-10" class="headerlink" title="Can’t find SDK despite setting ANDROID_HOME, windows 10"></a>Can’t find SDK despite setting ANDROID_HOME, windows 10</h4><p><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_01.png" alt="Can&#39;t find SDK despite setting ANDROID_HOME, windows 10 "></p>
+<p>这种情况是找不<code>android sdk</code>路径引起的，所有手动设置路径即可：<br>方法二： 设本地变量：<br>找到你创建项目下的<code>android</code>文件夹，在这个目录的下创建一个文件<code>local.properties</code>然后添加你<code>android sdk</code>的路径：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//填入sdk地址</span><br><span class="line">sdk.dir=path\of\your\Android\sdk</span><br><span class="line">//`window`下注意目录结构的写法</span><br><span class="line">sdk.dir=path/of/your/Android/sdk</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/sdk.png" alt="sdk"><br><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_01_solution.png" alt="error_01_solution"></p>
+<p>方法二： 执行命令带上参数（该方法试过，不起作用，不知道是不是没设置对）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native run-android ANDROID_HOME=<span class="string">"C:\Users\xxx\AppData\Local\Android\sdk"</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<ul>
+<li><code>windows</code>环境下，目录路路径要采用<code>/</code>连接，而不是<code>Linux</code>下的<code>\</code>, （这个坑可以说是巨坑无比）。</li>
+<li>参考<a href="https://stackoverflow.com/questions/32634352/react-native-android-build-failed-sdk-location-not-found" target="_blank" rel="noopener">stackoverflow</a>，主要注意<code>Windows</code>下目录路径的问题，参加上一条注意点。</li>
+</ul>
+<p><br></p>
+<h4 id="3-问题：You-have-not-accepted-the-license-agreements-of-the-following-SDK-components"><a href="#3-问题：You-have-not-accepted-the-license-agreements-of-the-following-SDK-components" class="headerlink" title="3. 问题：You have not accepted the license agreements of the following SDK components"></a>3. 问题：<code>You have not accepted the license agreements of the following SDK components</code></h4><p><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_02.png" alt="error_02"><br><br><br>出现这种问题，其实是你的<code>android sdk</code>下缺少<code>licenses</code>文件夹，解决方案为：</p>
+<ol>
+<li>在sdk根目录下创建<code>licenses</code>文件夹;</li>
+<li>在<code>licenses</code>文件夹下创建两个文件：<code>android-sdk-license</code>与<code>android-sdk-preview-license</code>;</li>
+<li>在<code>android-sdk-license</code>中写入：<code>8933bad161af4178b1185d1a37fbf41ea5269c55</code>;</li>
+<li>在<code>android-sdk-preview-license</code>中写入：<code>84831b9409646a918e30573bab4c9c91346d8abd</code>。<br><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_02_solution_01.png" alt="error_02_solution_01"><br><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_02_solution_02.png" alt="error_02_solution_02"><br><br></li>
+</ol>
+<h3 id="4-adb连接android模拟器相关"><a href="#4-adb连接android模拟器相关" class="headerlink" title="4. adb连接android模拟器相关"></a>4. <code>adb</code>连接<code>android</code>模拟器相关</h3><p>在使用<code>adb</code>连接模拟器调试的时候，一般会使用下面的语句:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb connect 127.0.0.1</span><br></pre></td></tr></table></figure></p>
+<p>这句命令默认会连<code>5555</code>端口，<strong>谷歌官方模拟器</strong>就是用这个端口，但是这些国产模拟器用的端口却不一样，下面是一些模拟器的连接方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">夜神模拟器   adb connect 127.0.0.1:62001</span><br><span class="line">海马玩模拟器  adb connect 127.0.0.1:53001</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<ul>
+<li>夜神模拟器连接参考<a href="http://shadow000902.space/2016/03/21/adb%E8%BF%9E%E6%8E%A5%E5%A4%9C%E7%A5%9E%E6%A8%A1%E6%8B%9F%E5%99%A8/" target="_blank" rel="noopener">这里</a></li>
+<li>海马玩模拟器连接参考<a href="http://www.ieclipse.cn/2016/09/19/other/haimawan-adb/index.html" target="_blank" rel="noopener">这里</a></li>
+</ul>
+<p><br></p>
+<h3 id="5-错误unable-to-load-script-from-assets-index-android-bundle-on-windows"><a href="#5-错误unable-to-load-script-from-assets-index-android-bundle-on-windows" class="headerlink" title="5. 错误unable to load script from assets index.android.bundle on windows"></a>5. 错误<code>unable to load script from assets index.android.bundle on windows</code></h3><p><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_03.png" alt="error_03"></p>
+<p>解决方案: 在<code>android/app/src/main/</code>文件夹下手动创建<code>asset</code>资源:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir android/app/src/main/assets</span><br><span class="line">react-native bundle --platform android --dev <span class="literal">false</span> --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res</span><br><span class="line">react-native run-android</span><br></pre></td></tr></table></figure>
+<p>见这个答案：<a href="https://stackoverflow.com/questions/44446523/unable-to-load-script-from-assets-index-android-bundle-on-windows" target="_blank" rel="noopener">stackoverflow</a></p>
+<p><br></p>
+<h3 id="6-import时设置index-js无法识别问题"><a href="#6-import时设置index-js无法识别问题" class="headerlink" title="6. import时设置index.js无法识别问题"></a>6. <code>import</code>时设置<code>index.js</code>无法识别问题</h3><p><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_04.png" alt="error_04"></p>
+<p>产生这个问题的原因主要是因为同一层目录下有相同的文件及文件夹名。如<code>app.json</code>和<code>app</code>文件夹。<br><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/01/23/20170123/error_04_solution.png" alt="error_04_"></p>
+<p>见这个答案：<a href="https://github.com/facebook/react-native/issues/12539" target="_blank" rel="noopener">#12539</a></p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2015-2017 by yandan66</span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d6d1da6e92ac017c8c09675b64546380";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261595465'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1261595465%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

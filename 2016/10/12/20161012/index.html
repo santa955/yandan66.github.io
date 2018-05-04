@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      React中容器组件和表现组件 | YANDAN66 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="组件是React的重要思想之一。在众多的React开发模式中，容器组件和表现组件分离是重要的一种。在写React应用时，这种思想非常有用。当结合Flux或Redux等后，这更加重要了。">
+<meta name="keywords" content="JavaScript,React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React中容器组件和表现组件 | YANDAN66">
+<meta property="og:url" content="https://yandan66.github.io/2016/10/12/20161012/index.html">
+<meta property="og:site_name" content="YANDAN66">
+<meta property="og:description" content="组件是React的重要思想之一。在众多的React开发模式中，容器组件和表现组件分离是重要的一种。在写React应用时，这种思想非常有用。当结合Flux或Redux等后，这更加重要了。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-04T08:42:47.771Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React中容器组件和表现组件 | YANDAN66">
+<meta name="twitter:description" content="组件是React的重要思想之一。在众多的React开发模式中，容器组件和表现组件分离是重要的一种。在写React应用时，这种思想非常有用。当结合Flux或Redux等后，这更加重要了。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="../../../../css/uno.css">
+    <link rel="stylesheet" href="../../../../css/highlight.css">
+    <link rel="stylesheet" href="../../../../css/archive.css">
+    <link rel="stylesheet" href="../../../../css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">YANDAN66</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/" title="" class="">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">React中容器组件和表现组件</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-10-12" class="post-meta__date date">2016-10-12</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="../../../../tags/JavaScript/">JavaScript</a>, <a class="tags-link" href="../../../../tags/React/">React</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>组件是<code>React</code>的重要思想之一。在众多的<code>React</code>开发模式中，<strong>容器组件</strong>和<strong>表现组件</strong>分离是重要的一种。在写<code>React</code>应用时，这种思想非常有用。当结合<code>Flux</code>或<code>Redux</code>等后，这更加重要了。<br><a id="more"></a><br>我们首先来看一个例子，假设你有一个显示评论的组件：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CommentList.js</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommentList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="keyword">this</span>.state = &#123; <span class="attr">comments</span>: [] &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">      url: <span class="string">"/my-comments.json"</span>,</span><br><span class="line">      dataType: <span class="string">'json'</span>,</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span>(<span class="params">comments</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;<span class="attr">comments</span>: comments&#125;);</span><br><span class="line">      &#125;.bind(<span class="keyword">this</span>)</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span> &#123;this.state.comments.map(renderComment)&#125; <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  renderComment(&#123;body, author&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;body&#125;—&#123;author&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在这个组件中, 组件做了两件事————获取数据和表现数据。这样写从逻辑上来说也没什么不对，但是这丢失了一些<code>React</code>给我们带来的好处:</p>
+<ul>
+<li>可重用行：<br>这个<code>CommentList</code>只能在环境完全一致的时候才能复用,当我想更改评论的显示结构，不然时间的位置等，这个组件就不可以使用了。</li>
+<li>数据结构：<br>组件应该声明它所需要的数据，<code>PropTypes</code>就是用来干这个的。<br>但是，尽管上面的组件知道自己需要什么数据结构，但却没办法声明这种需求。因此，服务器端的<code>json</code>结构发生变化，该组件就会悄无声息地停止工作。</li>
+</ul>
+<p>为了解决这些问题，我们重新写一遍这个组件，但是分为两部分：</p>
+<p>首先，将所有获取数据的操作都写进下面这个组件。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CommentListContainer.js</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommentListContainer</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">super</span>();</span><br><span class="line">    <span class="keyword">this</span>.state = &#123; <span class="attr">comments</span>: [] &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">      url: <span class="string">"/my-comments.json"</span>,</span><br><span class="line">      dataType: <span class="string">'json'</span>,</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span>(<span class="params">comments</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;<span class="attr">comments</span>: comments&#125;);</span><br><span class="line">      &#125;.bind(<span class="keyword">this</span>)</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">CommentList</span> <span class="attr">comments</span>=<span class="string">&#123;this.state.comments&#125;</span> /&gt;</span>;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后，我们在写一个展示评论的组件：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CommentList.js</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommentList</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  render() &#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span> &#123;this.props.comments.map(renderComment)&#125; <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  renderComment(&#123;body, author&#125;) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;body&#125;—&#123;author&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们把<code>CommentListContainer</code>组件叫容器组件，把<code>CommentList</code>叫展示组件。但也有人叫胖组件和瘦组件（Fat and Skinny）、智能组件和非智能组件（Smart and Dumb）、状态组件和纯组件（Stateful and Pure）、画面和组件（Screen and Component）等等。尽管它们并不完全相同，但基本的理念是一致的。</p>
+<p>这里有个基本原则：容器组件仅仅做数据提取，然后渲染对应的子组件。而展示组件仅仅是展示数据，不做其他工作。<br>下面我们来看看他们的区别：</p>
+<table>
+<thead>
+<tr>
+<th>展示组件</th>
+<th>容器组件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>关注事物的展示</td>
+<td>关注事物如何工作</td>
+</tr>
+<tr>
+<td>可能包含展示和容器组件，并且一般会有DOM标签和css样式</td>
+<td>可能包含展示和容器组件，并且不会有DOM标签和css样式</td>
+</tr>
+<tr>
+<td>常常允许通过this.props.children传递</td>
+<td>提供数据和行为给容器组件或者展示组件</td>
+</tr>
+<tr>
+<td>对第三方没有任何依赖，比如store 或者 flux action</td>
+<td>调用flux action 并且提供他们的回调给展示组件</td>
+</tr>
+<tr>
+<td>不要指定数据如何加载和变化</td>
+<td>作为数据源，通常采用较高阶的组件，而不是自己写，比如React Redux的connect(), Relay的createContainer(), Flux Utils的Container.create()</td>
+</tr>
+<tr>
+<td>仅通过属性获取数据和回调</td>
+<td></td>
+</tr>
+<tr>
+<td>很少有自己的状态，即使有，也是自己的UI状态</td>
+<td></td>
+</tr>
+<tr>
+<td>除非他们需要的自己的状态，生命周期，或性能优化才会被写为功能组件</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br><br>这样做的优势：</p>
+<ul>
+<li>展示和容器更好的分离，更好的理解应用程序和UI</li>
+<li>重用性高，展示组件可以用于多个不同的state数据源</li>
+<li>展示组件就是你的调色板，可以把他们放到单独的页面，在不影响应用程序的情况下，让设计师调整UI</li>
+<li>迫使你分离标签，达到更高的可用性</li>
+</ul>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2015-2017 by yandan66</span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d6d1da6e92ac017c8c09675b64546380";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261595465'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1261595465%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

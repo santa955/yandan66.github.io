@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      React Native 网络层分析 | YANDAN66 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="在使用React Native开发中，我们熟练的采用JavaScript的方式发送请求的方式发送一个请求到服务端，但是处理这个请求的过程其实和处理Web应用中发送的请求的过程是不一样的。因为处理这个请求的目标不是浏览器，而是嵌入这个应用的原生操作系统。">
+<meta name="keywords" content="JavaScript,React Native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native 网络层分析 | YANDAN66">
+<meta property="og:url" content="https://yandan66.github.io/2017/11/23/20171124/index.html">
+<meta property="og:site_name" content="YANDAN66">
+<meta property="og:description" content="在使用React Native开发中，我们熟练的采用JavaScript的方式发送请求的方式发送一个请求到服务端，但是处理这个请求的过程其实和处理Web应用中发送的请求的过程是不一样的。因为处理这个请求的目标不是浏览器，而是嵌入这个应用的原生操作系统。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/11/23/20171124/xhr.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/11/23/20171124/network.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/fiddler_01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/fiddler_02.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/fiddler_03.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/reactotron_01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/reactotron_02.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/reactotron_03.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/reactotron_04.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/11/23/20171124/base64.jpeg">
+<meta property="og:updated_time" content="2018-05-04T09:03:45.383Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React Native 网络层分析 | YANDAN66">
+<meta name="twitter:description" content="在使用React Native开发中，我们熟练的采用JavaScript的方式发送请求的方式发送一个请求到服务端，但是处理这个请求的过程其实和处理Web应用中发送的请求的过程是不一样的。因为处理这个请求的目标不是浏览器，而是嵌入这个应用的原生操作系统。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/11/23/20171124/xhr.jpeg">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="../../../../css/uno.css">
+    <link rel="stylesheet" href="../../../../css/highlight.css">
+    <link rel="stylesheet" href="../../../../css/archive.css">
+    <link rel="stylesheet" href="../../../../css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">YANDAN66</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/" title="" class="">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">React Native 网络层分析</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-11-23" class="post-meta__date date">2017-11-23</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="../../../../tags/JavaScript/">JavaScript</a>, <a class="tags-link" href="../../../../tags/React-Native/">React Native</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>在使用<code>React Native</code>开发中，我们熟练的采用<code>JavaScript</code>的方式发送请求的方式发送一个请求到服务端，但是处理这个请求的过程其实和处理<code>Web</code>应用中发送的请求的过程是不一样的。因为处理这个请求的目标不是浏览器，而是嵌入这个应用的原生操作系统。<br><a id="more"></a><br><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/11/23/20171124/xhr.jpeg" alt="banner"></p>
+<p>在处理<code>React Native</code>的请求时，分为两部分：一部分是<code>JavaScript</code>的运行环境，另一部分是嵌入<code>JavaScript</code>的<code>Native</code>（即原生<code>Android</code>和<code>IOS</code>）运行环境。<code>React Native</code>内置了三种发送网络请求的方式：<code>fetch</code>, <code>XMLHttpRequest</code> 和 <code>WebSocket</code>。但是<code>React Native</code>的运行环境和Web应用的运行环境不一样，所以需要在原生应用层采用自定义函数来拓展运行时（runtime）环境来处理<code>JavaScript</code>发出的网络请求。</p>
+<h2 id="请求发送方式及过程"><a href="#请求发送方式及过程" class="headerlink" title="请求发送方式及过程"></a>请求发送方式及过程</h2><p><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/11/23/20171124/network.jpeg" alt="banner"><br>对于常用的网络请求对象：XMLHttpRequest（XHR）、Fetch及WebSocket，熟悉前端开发的同学应该非常了解。<code>XHR</code>是Web开发中用得比较多的发送请求的方式，<code>Fetch</code>和<code>Websocket</code>也是后起之秀，在很多现代Web应用中得以采用。但是，在<code>React Native</code>中，这些对象的使用和Web应用是有差别的。当你在JS层调用网络请求时，其实是经历了两个过程才到达真正的服务器端。就像头部banner表示的那样。</p>
+<h4 id="XMLHttpRequest（XHR）"><a href="#XMLHttpRequest（XHR）" class="headerlink" title="XMLHttpRequest（XHR）"></a>XMLHttpRequest（XHR）</h4><p>在<code>React Native</code>中, <code>XMLHttpRequest（XHR）</code>由两部分组成： “前端”（front-end）和“后端”（back-end）。前端负责与<code>JavaScript</code>交互，后端负责在原生平台上转换<code>JavaScript</code>发送过来的请求为原生系统自己的请求。</p>
+<p>这里的后端其实是一个原生平台顶层抽象的统一API层，使得<code>JavaScript</code>层可以调用原先系统的网络模块。例如<code>IOS</code>下内置的<a href="https://developer.apple.com/documentation/foundation/urlsession" target="_blank" rel="noopener">URLSession</a>模块和<code>Android</code>下的<a href="http://square.github.io/okhttp/" target="_blank" rel="noopener">OKHTTP</a>模块。</p>
+<h4 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a>Fetch</h4><p>在现代Web浏览器中，<code>Fetch</code>API提供了和<code>XHR</code>大部分相同的功能，但是<code>Fetch</code>提供了一种更加简单，高效的方式来跨网络异步获取资源，同时可操纵<code>Request</code>和<code>Response</code>对象来复用请求。</p>
+<p>但是在<code>React Native</code>中，为了兼容两种平台的差异，采用了依赖于<code>XMLHttpRequest</code>的<a href="https://github.com/github/fetch" target="_blank" rel="noopener">Fetch Polyfill</a>来实现这个请求对象。这就意味着我们不能像实用Web平台下的<code>Fetch</code>对象一样来实用<code>React Native</code>下的该对象。比如采用这个对象来发送binary数据。当然可以采用第三方的库比如<a href="https://github.com/wkh237/react-native-fetch-blob" target="_blank" rel="noopener">react-native-fetch-blob</a>来实现相应的功能。</p>
+<h4 id="Websocket"><a href="#Websocket" class="headerlink" title="Websocket"></a>Websocket</h4><p><code>Websocket</code>作为一种新的通信协议，采用全双工通讯方式与服务器间进行通信的网络技术。</p>
+<p>在<code>React Native</code>中，<code>Websocket</code>并不是一个独立的请求，和<code>XMLHttpRequest（XHR）</code>一样由两部分组成： “前端”（front-end）和“后端”（back-end）。前端负责与<code>JavaScript</code>交互，后端负责在原生平台上转换<code>JavaScript</code>发送过来的请求为原生系统自己的请求。在IOS中采用的是自己开发的<a href="https://developer.apple.com/documentation/foundation/nsstream" target="_blank" rel="noopener">NSStream</a>，而在Android系统中则是<a href="http://square.github.io/okhttp/" target="_blank" rel="noopener">OKHTTP</a>模块。</p>
+<h2 id="查看React-Native中的网络请求"><a href="#查看React-Native中的网络请求" class="headerlink" title="查看React Native中的网络请求"></a>查看React Native中的网络请求</h2><p>在<code>React Native</code>开发中，你可以通过<code>Chrome Developer Tools (CDT)</code>的<code>Sources</code>面板中调试<code>javascript</code>部分的代码，包括断点、输出信息、断点调试等一切<code>javascript</code>调试所需的信息。但是，唯一缺少的就是<em>网络请求</em>的跟踪调试。我们没办法像Web开发那样，可以通过<code>CDT</code>中的网络面板（<code>Network</code>）来查看应用的网络请求的相关信息。</p>
+<h4 id="使用代理调试网络请求"><a href="#使用代理调试网络请求" class="headerlink" title="使用代理调试网络请求"></a>使用代理调试网络请求</h4><p>虽然没有办法通过<code>CDT</code>查看应用的网络请求，但是我们可以通过<code>Fiddler</code>、<code>CharlesProxy</code>及<code>Wireshark</code>等软件设置代理，来查看追踪调试网络请求。这里使用<code>Fiddler</code>来作为代理。</p>
+<ol>
+<li><p>首先设置<code>Fiddler</code>的代理端口：<br>打开Filddler -&gt; Tool -&gt; Options -&gt; Connects，在监听端口处填写相应的端口号，<br><img src="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/fiddler_01.png" alt="fiddler设置"></p>
+</li>
+<li><p>在调试机器上、<code>Android</code>或者<code>IOS</code>模拟器模拟器中设置代理：<br>找到调试的机器上的网络设置中，设置当前连接的WIFI的代理地址<br><img src="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/fiddler_02.png" alt="fiddler设置"></p>
+</li>
+<li><p>刷新应用，在<code>fiddler</code>中查看网络请求(提示：右键，在新页签中打开可查看清晰图片):<br><img src="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/fiddler_03.gif" alt="fiddler设置"></p>
+</li>
+</ol>
+<p>在代理应用中，我们可以查看请求头，返回头，返回结果等相关的网络信息。当然，还可以根据相关代理软件拦截请求，重新设置后发送。</p>
+<h4 id="使用Reactotron调试网络"><a href="#使用Reactotron调试网络" class="headerlink" title="使用Reactotron调试网络"></a>使用<a href="https://github.com/infinitered/reactotron" target="_blank" rel="noopener">Reactotron</a>调试网络</h4><p>上面通过设置代理的方式来查看和追踪网络请求，虽然功能强大，但是实际操作起来有些难度，上手成本比较高。通过使用<code>Reactotron</code>，可以将调试的配置信息集成到应用中，方便在不同的开发环境下有相同的调试配置，节约开发配置成本。</p>
+<p><code>Reactotron</code>由两部分组成，一部分是调试应用，一部分是调试配置。</p>
+<ol>
+<li><p>调试应用分别有各个操作系统的<a href="https://infinite.red/reactotron" target="_blank" rel="noopener">GUI安装版本</a>。当然，如果习惯使用命令行，也可以使用<code>NPM</code>安装<code>reactotron-cli</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g reactotron-cli</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/reactotron_01.png" alt="reactotron设置"></p>
+</li>
+<li><p>设置调试配置：<br>在你的<code>React Native</code>应用中安装<code>reactotron-react-native</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i --save-dev reactotron-react-native</span><br></pre></td></tr></table></figure>
+<p>然后，在你的应用的添加配置文件，定制调试内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import Reactotron, &#123;</span><br><span class="line">  trackGlobalErrors,</span><br><span class="line">  openInEditor,</span><br><span class="line">  overlay,</span><br><span class="line">  asyncStorage,</span><br><span class="line">  networking</span><br><span class="line">&#125; from &apos;reactotron-react-native&apos;</span><br><span class="line"></span><br><span class="line">Reactotron</span><br><span class="line">  .configure(&#123;</span><br><span class="line">    name: &apos;xxx&apos;                 // 调试的名称</span><br><span class="line">  &#125;)</span><br><span class="line">  .use(trackGlobalErrors())     // 设置监听全局错误</span><br><span class="line">  .use(openInEditor())          // 设置在编辑器中打开错误</span><br><span class="line">  .use(overlay())               // 设置图片遮盖图片（用于UI还原度对比）</span><br><span class="line">  .use(asyncStorage())          // 设置异步存储调试</span><br><span class="line">  .use(networking())            // 设置网络调试</span><br><span class="line">  .connect()                    // 连接应用（必须）</span><br></pre></td></tr></table></figure>
+<p>然后在你的应用的入口文件中引入这个配置文件。然后重新启动应用。当然，还可以使用正则表达式过滤请求的<code>contentType</code>的类型和要忽略的请求的<code>url</code>，见下面的配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.use(networking(&#123;</span><br><span class="line">   ignoreContentTypes: /^(image)\/.*$/i,   // 设置reactotron要忽略的文件类型</span><br><span class="line">   ignoreUrls: /\/(logs|symbolicate)$/,    // 设置reactotron要忽略的url请求路径</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/reactotron_02.png" alt="reactotron设置"><br><img src="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/reactotron_03.png" alt="reactotron设置"><br><img src="https://raw.githubusercontent.com/yandan66/blogs/master/source/_posts/20171124/reactotron_04.gif" alt="reactotron结果"></p>
+<p><code>reactotron</code>调试网络只是他的一个功能之一，其他还有很多强大的功能。有兴趣可以查看他的<a href="https://github.com/infinitered/reactotron" target="_blank" rel="noopener">文档</a>。</p>
+<h4 id="使用Chrome-Developer-Tools网络面板调试网络"><a href="#使用Chrome-Developer-Tools网络面板调试网络" class="headerlink" title="使用Chrome Developer Tools网络面板调试网络"></a>使用Chrome Developer Tools网络面板调试网络</h4><p><code>React Native</code>默认暴露出来的接口中，是没有直接在<code>Chrome Developer Tools</code>查看网络请求的方法的，查看 RN 源码 Libraries/Core/InitializeCore.js，注释中写着：</p>
+<blockquote>
+</blockquote>
+<p>  Sets an object’s property. If a property with the same name exists, this will<br>  replace it but maintain its descriptor configuration. By default, the property<br>  will replaced with a lazy getter.<br>  <em><br>  The original property value will be preserved as original[PropertyName] so<br>  that, if necessary, it can be restored. For example, if you want to route<br>  network requests through DevTools (to trace them):
+  </em><br>  global.XMLHttpRequest = global.originalXMLHttpRequest;<br>  *<br>  @see <a href="https://github.com/facebook/react-native/issues/934" target="_blank" rel="noopener">https://github.com/facebook/react-native/issues/934</a></p>
+<p>具体实现在<a href="https://github.com/facebook/react-native/blob/1e8f3b11027fe0a7514b4fc97d0798d3c64bc895/Libraries/Network/XHRInterceptor.js" target="_blank" rel="noopener">XHRInterceptor.js</a>中。原来的<code>XMLHttpRequest</code>被改写成了 <code>originalXMLHttpRequest</code>，所以要在<code>Chrome</code> 中显示<code>network</code> 只需要替换<code>XMLHttpRequest</code> 为 <code>originalXMLHttpRequest</code>。在入口文件处设置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (__DEV__) &#123;</span><br><span class="line">  GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然，这样有可能会产生<code>CORS</code>, <code>Chrome</code> 会限制跨域请求。这时要么后端配合一下去除限制，要么使用 <a href="https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi" target="_blank" rel="noopener">Allow-Control-Allow-Origin: *</a> 插件。</p>
+<h2 id="React-Native发送二进制数据（binary-data-）"><a href="#React-Native发送二进制数据（binary-data-）" class="headerlink" title="React Native发送二进制数据（binary data ）"></a>React Native发送二进制数据（binary data ）</h2><p>由于<code>React Native</code>中<code>Fetch</code>对象的底层采用的是<code>XHR</code>实现，这就限制了发送二进制数据的功能。当然<code>React Native</code>提供了一系列的方式来解决这个问题，比如： 转换二进制文件为base64字符串或者采用第三方库<a href="https://github.com/wkh237/react-native-fetch-blob" target="_blank" rel="noopener"> react-native-fetch-blob</a>。但是并没有从底层解决这个问题。</p>
+<h4 id="转换二进制为base64发送"><a href="#转换二进制为base64发送" class="headerlink" title="转换二进制为base64发送"></a>转换二进制为base64发送</h4><p>到目前为止，<code>React Native</code>不能发送非序列化的数据，所以，要发送二进制数据，采用Base64编码的字符串是个不错的选择。<br><img src="https://raw.githubusercontent.com/yandan66/yandan66.github.io/master/2017/11/23/20171124/base64.jpeg" alt="banner"></p>
+<p>例如，你从服务器下载一张图片（注意：不是通过<code>url</code>从服务器获取），请求通过JavaScript线程，再通过<code>React Native</code>提供的桥接器，最后通过原生系统的网络模块发送到服务端。服务端返回一个Base64编码过的图片，<code>JavaScript</code>线程收到返回的字符串后，会分配相应的内存，然后<code>React Native</code>会调用相应的原生模块渲染成相应图片。但是值得主要的是，这种方式会造成典型的性能问题——内存泄漏。</p>
+<p>通过Base64编码的方式传输二进制文件，这里会造成一系列性能问题，<a href="https://medium.com/@talkol/performance-limitations-of-react-native-and-how-to-overcome-them-947630d7f440" target="_blank" rel="noopener">这篇文章</a>中列出了大部分性能问题及提出了相应的解决方案。</p>
+<p>现在使用的各种方法发送二进制文件都存在各种问题，最终的解决方式是要相应的标准能够实现二进制的传输。目前，<code>WebSocket</code>已经支持了二进制传输。在最新版本的<code>React Native</code>层也已经支持<code>WebSocket</code>协议来传输二进制文件，但是，相应的原生平台的网络模块暂时还不支持。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>React Native</code>开发方式是非常不错的体验，但是，受各个平台差异和标准的限制，不得不折中处理一些问题。随之而来的是相应的性能、效率的问题。另外，采用开发，性能上和用户体验上和原生应用还是有一定差距。但是如果在原生应用中能够集成<code>React Native</code>，会显著提高开发效率。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://medium.com/dailyjs/network-layer-in-react-native-eec841f11861" target="_blank" rel="noopener">Network layer in React Native</a><br><a href="https://infinite.red/reactotron" target="_blank" rel="noopener">reactotron介绍</a><br><a href="https://github.com/infinitered/reactotron" target="_blank" rel="noopener">reactotron</a><br><a href="https://github.com/infinitered/reactotron/blob/master/docs/quick-start-react-native.md" target="_blank" rel="noopener">Reactotron on React Native</a></p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2015-2017 by yandan66</span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d6d1da6e92ac017c8c09675b64546380";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261595465'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1261595465%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>

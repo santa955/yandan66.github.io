@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      移动web开发填坑记 | YANDAN66 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="John Doe">
+    
+    
+
+    <meta name="description" content="本文主要记录了移动web开发中遇到的各种问题。">
+<meta name="keywords" content="移动开发,webapp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动web开发填坑记 | YANDAN66">
+<meta property="og:url" content="https://yandan66.github.io/2016/03/18/20160318/index.html">
+<meta property="og:site_name" content="YANDAN66">
+<meta property="og:description" content="本文主要记录了移动web开发中遇到的各种问题。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-05-04T08:42:47.734Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动web开发填坑记 | YANDAN66">
+<meta name="twitter:description" content="本文主要记录了移动web开发中遇到的各种问题。">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/favicon.png">
+    
+    <link rel="stylesheet" href="../../../../css/uno.css">
+    <link rel="stylesheet" href="../../../../css/highlight.css">
+    <link rel="stylesheet" href="../../../../css/archive.css">
+    <link rel="stylesheet" href="../../../../css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">YANDAN66</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/" title="" class="">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">博客</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">移动web开发填坑记</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2016-03-18" class="post-meta__date date">2016-03-18</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="../../../../tags/webapp/">webapp</a>, <a class="tags-link" href="../../../../tags/移动开发/">移动开发</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <p>本文主要记录了移动web开发中遇到的各种问题。</p>
+<a id="more"></a>
+<h4 id="1-移动端浏览器下textarea-input聚焦时自动放大问题。"><a href="#1-移动端浏览器下textarea-input聚焦时自动放大问题。" class="headerlink" title="1. 移动端浏览器下textarea ,input聚焦时自动放大问题。"></a>1. 移动端浏览器下<code>textarea</code> ,<code>input</code>聚焦时自动放大问题。</h4><p>ios认为，在移动端当字体小于<code>16px</code>的时候，用户是无法看清楚页面的。所以，会自动放大页面。<br>解决办法有两种：</p>
+<p>第一种是在设置文本框字体大于<code>16px</code>。当然这种情况基本不适用。<br>第二种在页面<code>&lt;head&gt;&lt;/head&gt;</code>标签中加入<code>&lt;meta&gt;</code>标签，如下:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"initial-scale=1.0, maximum-scale=1.0, user-scalable=0"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-IOS自带浏览器safari下文本框带内阴影"><a href="#2-IOS自带浏览器safari下文本框带内阴影" class="headerlink" title="2. IOS自带浏览器safari下文本框带内阴影"></a>2. IOS自带浏览器safari下文本框带内阴影</h4><p>在默认情况下，safari下的表单元素会自带一层内阴影，如下图:<br>原因见<a href="http://zomigi.com/blog/bug-fixes-for-removing-the-inner-shadow-on-ios-inputs/" target="_blank" rel="noopener">这篇文章博客</a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">input</span><span class="selector-attr">[type="text"]</span> &#123;</span><br><span class="line">   <span class="attribute">-webkit-appearance</span>: none;</span><br><span class="line">   <span class="attribute">-moz-appearance</span>:    none;</span><br><span class="line">   <span class="attribute">appearance</span>:         none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/appearance" target="_blank" rel="noopener"><code>appearance</code>（见MDN介绍）</a>属性指示是否使用基于操作系统主题的平台原生的样式显示元素。</p>
+<p><strong>注意:</strong> 当<code>appearance</code>的值为<code>none</code>,时，只有表单控件的样式不再被强制显示与操作系统本地控件一样 。可以通过CSS控制。但除了表单控件以外的其他替换元素都不会受到影响。</p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2015-2017 by yandan66</span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d6d1da6e92ac017c8c09675b64546380";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1261595465'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1261595465%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
